@@ -83,4 +83,3 @@ for i in range(switch_cnt):
     if i > 0 and i % 20 == 0:
         print()  # 20개마다 줄바꿈
     print(switch_state[i], end=' ')
-print()  # 마지막 줄바꿈 추가
