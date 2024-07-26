@@ -1,8 +1,3 @@
-# 리스트에 겹치는게 여러개 일 경우 ?
-# 저장된 노래가 없을 경우 !
-# 정환이 아는 개수 N, 시도할 개수 M
-
-# 제목 길이 + 제목 + 음이름 
 import sys
 input = sys.stdin.readline 
 
@@ -17,35 +12,19 @@ def parse_song_info(song):
         'preview': preview
     }
 
-
-
-
 songs = []
+
 for _ in range(int(n)):
     song = input().strip()
     song_info = parse_song_info(song)
     songs.append(song_info)
-
-
-# try_quiz = list(input().strip() for _ in range(int(n)))
-
-# print(songs)
-
-def try_quiz(m):
-    result = []
-    for _ in range(int(m)):
-        quiz = input().strip()
-        result.append(check_preview_start(songs, quiz))
-    return result
     
-    
-
+# 세글자 비교
 def check_preview_start(songs, quiz):
     cnt = 0
     title = ""
     for song in songs:
         preview = song["preview"]
-        # 첫 세 글자가 target_preview와 일치하는지 확인
         if preview[:len(quiz)] == quiz:
             cnt += 1
             title = song["title"]
@@ -57,10 +36,11 @@ def check_preview_start(songs, quiz):
         return title
 
 
+# 퀴즈 시작
+def try_quiz(m):
+    for _ in range(int(m)):
+        quiz = input().strip()
+        print(check_preview_start(songs, quiz))
 
-results = try_quiz(m)
 
-for result in results:
-    print(result)
-
-# 실행 시켰을 때 E D E 가
+try_quiz(m)
