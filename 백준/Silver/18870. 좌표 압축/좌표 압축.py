@@ -15,8 +15,8 @@ sorted_unique_coords = sorted(set(coords))
 coord_dict = {coord: idx for idx, coord in enumerate(sorted_unique_coords)}
 
 # 압축된 좌표 출력
-# compressed_coords = [coord_dict[coord] for coord in coords]
-# print(' '.join(map(str, compressed_coords)))
+compressed_coords = [coord_dict[coord] for coord in coords]
+print(' '.join(map(str, compressed_coords)))
 
-for coord in coords:
-    print(coord_dict[coord], end=" ")
+# for coord in coords:
+    # print(coord_dict[coord], end=" ")
