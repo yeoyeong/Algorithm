@@ -11,7 +11,7 @@ data = [input().strip() for _ in range(n)]
 matrix = [list(row) for row in data]
 
 
-def dfs(x, y, grid, visited, n, m):
+def dfs(x, y, grid, visited):
     #해당 좌표 체크 표시
     visited[x][y] = True
     
@@ -21,11 +21,18 @@ def dfs(x, y, grid, visited, n, m):
     for dx, dy in directions:
         #현재 좌표에서 오른쪽, 아래 체크
         nx, ny = x + dx, y + dy
-        if 0 <= nx < n and 0 <= ny < m and not visited[nx][ny] and grid[nx][ny] == '#':
-            dfs(nx, ny, grid, visited, n, m)
+
+        # 조건
+        # nx X좌표가 0 이상인지 n보다 작은지 체크
+        # ny Y좌표가 0 이상인지 m보다 작은지 체크
+        # 방문 했었던 위치인지 체크
+        # grid[nx][ny] == '#' 인지 체크
+
+        if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] == '#':
+            dfs(nx, ny, grid, visited)
 
 
-def count_grass_areas(grid, n, m):
+def count_grass_areas(grid):
     visited = [[False] * m for _ in range(n)]
     count = 0
 
@@ -33,7 +40,7 @@ def count_grass_areas(grid, n, m):
         for j in range(m):
             # 해당 위치가 #이거나 visited 좌표가 false이면 실행
             if grid[i][j] == '#' and not visited[i][j]:
-                dfs(i, j, grid, visited, n, m)
+                dfs(i, j, grid, visited)
                 count += 1
     
     return count
@@ -41,7 +48,7 @@ def count_grass_areas(grid, n, m):
 
 
 
-result = count_grass_areas(matrix, n, m)
+result = count_grass_areas(matrix)
 
 print(result)
 
